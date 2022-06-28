@@ -6,7 +6,7 @@
 /*   By: yel-aoun <yel-aoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 12:05:18 by yel-aoun          #+#    #+#             */
-/*   Updated: 2022/06/26 10:37:18 by yel-aoun         ###   ########.fr       */
+/*   Updated: 2022/06/28 17:09:04 by yel-aoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,5 @@ int	if_philo_finish_eating(t_philo *philo);
  // utils
 int	ft_atoi(char *str);
 unsigned long	get_time();
-
+void	ft_usleep(unsigned long sleep);
 # endif

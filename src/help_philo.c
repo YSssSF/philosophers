@@ -6,7 +6,7 @@
 /*   By: yel-aoun <yel-aoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 11:37:41 by yel-aoun          #+#    #+#             */
-/*   Updated: 2022/06/26 11:17:10 by yel-aoun         ###   ########.fr       */
+/*   Updated: 2022/06/28 17:34:56 by yel-aoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,17 @@ unsigned long	get_time()
 	
 	gettimeofday(&time, NULL);
 	return ((time.tv_sec * 1000) + (time.tv_usec / 1000));
+}
+
+void	ft_usleep(unsigned long sleep)
+{
+	unsigned long	time;
+
+	time = get_time();
+	while (get_time() - time < sleep)
+	{
+		usleep (500);
+	}
 }
 
 int	if_philo_finish_eating(t_philo *philo)

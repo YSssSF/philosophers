@@ -6,7 +6,7 @@
 /*   By: yel-aoun <yel-aoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 12:05:28 by yel-aoun          #+#    #+#             */
-/*   Updated: 2022/06/26 11:17:54 by yel-aoun         ###   ########.fr       */
+/*   Updated: 2022/06/28 17:37:11 by yel-aoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,48 @@ void	check_die(t_philo *philo)
 	{
 		if (get_time() - philo[i].l_t_eat >= philo->t_die)
 		{
+			
 			pthread_mutex_lock(philo->print);
-			printf(" %lu ms : philo number%d",(get_time() - philo->star_t), (philo[i].index + 1));
+			printf("%lu ms : philo number %d die\n",(get_time() - philo->star_t), (philo[i].index + 1));
 			pthread_mutex_destroy(philo->forks);
 			pthread_mutex_destroy(philo->print);
 			return ;
 		}
-		i++;
+		i = (i + 1) % philo->members;
+	}
+}
+
+// void	*routine_2(t_philo *philo)
+// {
+	
+// }
+
+void	*routine_1(void *philos)
+{
+	t_philo	*philo;
+	
+	philo = (t_philo *)philos;
+	while (1)
+	{
+		pthread_mutex_lock(&philo->forks[philo->index]);
+		pthread_mutex_lock(&philo->forks[(philo->index + 1) % philo->members]);
+		pthread_mutex_lock(philo->print);
+		printf("%lu ms: philo %d take a fork\n", (get_time() - philo->star_t), philo->index + 1);
+		pthread_mutex_unlock(philo->print);
+		pthread_mutex_lock(philo->print);
+		printf("%lu ms: philo %d start eating\n", (get_time() - philo->star_t), philo->index + 1);
+		pthread_mutex_unlock(philo->print);
+		philo->l_t_eat = get_time();
+		ft_usleep(philo->t_eat);
+		pthread_mutex_unlock(&philo->forks[(philo->index + 1) % philo->members]);
+		pthread_mutex_unlock(&philo->forks[philo->index]);
+		pthread_mutex_lock(philo->print);
+		printf("%lu ms: philo %d is sleeping\n", (get_time() - philo->star_t), philo->index + 1);
+		pthread_mutex_unlock(philo->print);
+		ft_usleep(philo->t_sleep);
+		pthread_mutex_lock(philo->print);
+		printf("%lu ms: philo %d is thinking\n", (get_time() - philo->star_t), philo->index + 1);
+		pthread_mutex_unlock(philo->print);
 	}
 }
 
@@ -44,22 +79,19 @@ void	ft_creat_philosofers(int ac, char **av, int ph)
 		return ;
 	philo = init_struct(ac, av, philo);
 	philo = ft_init_forks(philo);
-	printf("nb_of_philo : %lu\n", philo[0].l_t_eat);
 	
 	i = 0;
 	while (i < ph)
 	{
 		philo[i].l_t_eat = get_time();
-		printf("last_time : %lu\n", philo[i].l_t_eat);
-		//printf("%lu\n", r);
-		// if (ac == 5)
-		// 	pthread_create(&n_philo[i], NULL, &routine_1, &philo[i]);
+		if (ac == 5)
+			pthread_create(&n_philo[i], NULL, &routine_1, &philo[i]);
 		// else if (ac == 6)
 		// 	pthread_create(&n_philo[i], NULL, &routine_2, &philo[i]);
 		i++;
-		usleep(1000);
+		usleep(200);
 	}
-	//check_die(philo);
+	check_die(philo);
 }
 
 int main (int ac, char **av)
