@@ -6,7 +6,7 @@
 /*   By: yel-aoun <yel-aoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 11:37:41 by yel-aoun          #+#    #+#             */
-/*   Updated: 2022/06/29 15:17:32 by yel-aoun         ###   ########.fr       */
+/*   Updated: 2022/06/29 19:37:56 by yel-aoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	if_philo_finish_eating(t_philo *philo)
 	i = 0;
 	while (i < philo->members)
 	{
-		if (philo[i].n_of_eat != philo->must_eat)
+		if (philo[i].n_of_eat != philo[i].must_eat)
 			return (0);
 		i++;
 	}

@@ -6,7 +6,7 @@
 /*   By: yel-aoun <yel-aoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 12:05:28 by yel-aoun          #+#    #+#             */
-/*   Updated: 2022/06/29 15:21:31 by yel-aoun         ###   ########.fr       */
+/*   Updated: 2022/06/29 19:39:54 by yel-aoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ void	check_die(t_philo *philo)
 	while (i < philo->members && !if_philo_finish_eating(philo))
 	{
 		if ((get_time() - philo[i].l_t_eat) >= philo->t_die
-			&& philo->is_eating == 1)
+			&& philo[i].is_eating == 1)
 		{
 			pthread_mutex_lock(philo->print);
-			printf("%llu ms : philo number %d die\n",
+			printf("%llu philo number %d die\n",
 				(get_time() - philo->star_t), (philo[i].index + 1));
 			pthread_mutex_destroy(philo->forks);
 			pthread_mutex_destroy(philo->print);
