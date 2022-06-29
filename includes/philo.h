@@ -6,7 +6,7 @@
 /*   By: yel-aoun <yel-aoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 12:05:18 by yel-aoun          #+#    #+#             */
-/*   Updated: 2022/06/28 17:09:04 by yel-aoun         ###   ########.fr       */
+/*   Updated: 2022/06/29 15:11:12 by yel-aoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,30 +21,37 @@
 
 typedef struct s_philo
 {
-    unsigned long	star_t;
-    int				members;
-    int				index;
-    unsigned long	t_eat;
-	unsigned long	t_sleep;
-	unsigned long	t_die;
-	unsigned long	l_t_eat;
+	long long		star_t;
+	int				members;
+	int				index;
+	long long		t_eat;
+	long long		t_sleep;
+	long long		t_die;
+	long long		l_t_eat;
+	int				is_eating;
 	long long		n_of_eat;
 	int				must_eat;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	*print;
-}       t_philo;
- // check_args
-int	check_args(char **av);
-int	check_int(char **av);
-int help_args(char **av);
+}		t_philo;
 
- // init_struct
-t_philo	*init_struct(int ac, char **av, t_philo	*philo);
-t_philo	*ft_init_forks(t_philo	*philo);
-int	if_philo_finish_eating(t_philo *philo);
+// check_args
 
- // utils
-int	ft_atoi(char *str);
-unsigned long	get_time();
-void	ft_usleep(unsigned long sleep);
-# endif
+int			check_args(char **av);
+int			check_int(char **av);
+int			help_args(char **av);
+
+// init_struct
+
+t_philo		*init_struct(int ac, char **av, t_philo	*philo);
+t_philo		*ft_init_forks(t_philo	*philo);
+void		ft_philo_is_eating_1(t_philo *philo);
+void		ft_philo_is_eating_2(t_philo *philo);
+int			if_philo_finish_eating(t_philo *philo);
+
+// utils
+
+int			ft_atoi(char *str);
+long long	get_time(void);
+void		ft_usleep(long long sleep);
+#endif

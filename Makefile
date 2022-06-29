@@ -6,13 +6,13 @@
 #    By: yel-aoun <yel-aoun@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/21 17:52:57 by yel-aoun          #+#    #+#              #
-#    Updated: 2022/06/26 14:56:11 by yel-aoun         ###   ########.fr        #
+#    Updated: 2022/06/29 14:50:06 by yel-aoun         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
 
-SRC = philosopher.c src/manage_errors.c src/ft_atoi.c src/help_philo.c
+SRC = philosopher.c src/manage_errors.c src/ft_atoi.c src/help_philo.c src/utils_philo.c
 
 CC = gcc -Wall -Wextra -Werror
 

@@ -6,40 +6,40 @@
 /*   By: yel-aoun <yel-aoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 11:37:41 by yel-aoun          #+#    #+#             */
-/*   Updated: 2022/06/28 17:34:56 by yel-aoun         ###   ########.fr       */
+/*   Updated: 2022/06/29 15:17:32 by yel-aoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../includes/philo.h"
+#include "../includes/philo.h"
 
-unsigned long	get_time()
+long long	get_time(void)
 {
 	struct timeval	time;
-	
+
 	gettimeofday(&time, NULL);
 	return ((time.tv_sec * 1000) + (time.tv_usec / 1000));
 }
 
-void	ft_usleep(unsigned long sleep)
+void	ft_usleep(long long sleep)
 {
-	unsigned long	time;
+	long long	time;
 
 	time = get_time();
 	while (get_time() - time < sleep)
 	{
-		usleep (500);
+		usleep (200);
 	}
 }
 
 int	if_philo_finish_eating(t_philo *philo)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < philo->members)
 	{
 		if (philo[i].n_of_eat != philo->must_eat)
-			return(0);
+			return (0);
 		i++;
 	}
 	return (1);
@@ -47,9 +47,9 @@ int	if_philo_finish_eating(t_philo *philo)
 
 t_philo	*ft_init_forks(t_philo	*philo)
 {
-	pthread_mutex_t *init_forks;
-	pthread_mutex_t *init_printf;
-	int	i;
+	pthread_mutex_t	*init_forks;
+	pthread_mutex_t	*init_printf;
+	int				i;
 
 	init_forks = malloc(sizeof(pthread_mutex_t) * philo->members);
 	init_printf = malloc(sizeof(pthread_mutex_t));
@@ -77,7 +77,7 @@ t_philo	*init_struct(int ac, char **av, t_philo	*philo)
 	int	i;
 
 	i = 0;
-	while(i < ft_atoi(av[1]))
+	while (i < ft_atoi(av[1]))
 	{
 		philo[i].members = ft_atoi(av[1]);
 		philo[i].index = i;
@@ -86,8 +86,8 @@ t_philo	*init_struct(int ac, char **av, t_philo	*philo)
 		philo[i].t_eat = ft_atoi(av[3]);
 		philo[i].t_sleep = ft_atoi(av[4]);
 		philo[i].must_eat = -1;
+		philo[i].is_eating = 1;
 		philo[i].n_of_eat = 0;
-		philo[i].l_t_eat = 0;
 		if (ac == 6)
 			philo[i].must_eat = ft_atoi(av[5]);
 		i++;

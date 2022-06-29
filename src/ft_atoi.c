@@ -6,11 +6,11 @@
 /*   By: yel-aoun <yel-aoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 12:37:37 by yel-aoun          #+#    #+#             */
-/*   Updated: 2022/06/19 16:22:39 by yel-aoun         ###   ########.fr       */
+/*   Updated: 2022/06/29 15:17:48 by yel-aoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../includes/philo.h"
+#include "../includes/philo.h"
 
 int	ft_atoi(char *str)
 {

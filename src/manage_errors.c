@@ -6,7 +6,7 @@
 /*   By: yel-aoun <yel-aoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 16:05:53 by yel-aoun          #+#    #+#             */
-/*   Updated: 2022/06/20 20:16:25 by yel-aoun         ###   ########.fr       */
+/*   Updated: 2022/06/29 15:13:31 by yel-aoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	check_int(char **av)
 		j = 0;
 		while (av[i][j] <= 32)
 			j++;
-		while(av[i][j])
+		while (av[i][j])
 		{
 			if ((av[i][j] < '0' || av[i][j] > '9') && av[i][j] != '+')
 				return (0);
@@ -64,7 +64,7 @@ int	check_args(char **av)
 	return (1);
 }
 
-int help_args(char **av)
+int	help_args(char **av)
 {
 	int	i;
 	int	j;
