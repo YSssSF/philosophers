@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   help_philo.c                                       :+:      :+:    :+:   */
+/*   help_philo_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yel-aoun <yel-aoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/21 11:37:41 by yel-aoun          #+#    #+#             */
-/*   Updated: 2022/06/29 19:37:56 by yel-aoun         ###   ########.fr       */
+/*   Created: 2022/06/30 18:33:57 by yel-aoun          #+#    #+#             */
+/*   Updated: 2022/07/04 17:11:29 by yel-aoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/philo.h"
+#include "../includes_bonus/philo_bonus.h"
 
 long long	get_time(void)
 {
@@ -27,52 +27,26 @@ void	ft_usleep(long long sleep)
 	time = get_time();
 	while (get_time() - time < sleep)
 	{
-		usleep (200);
+		usleep (150);
 	}
 }
 
-int	if_philo_finish_eating(t_philo *philo)
+int	if_philo_finish_eating(t_philo_bonus *philo)
 {
 	int	i;
 
 	i = 0;
 	while (i < philo->members)
 	{
-		if (philo[i].n_of_eat != philo[i].must_eat)
+		if (philo->n_of_eat != philo->must_eat)
 			return (0);
 		i++;
 	}
 	return (1);
 }
 
-t_philo	*ft_init_forks(t_philo	*philo)
-{
-	pthread_mutex_t	*init_forks;
-	pthread_mutex_t	*init_printf;
-	int				i;
-
-	init_forks = malloc(sizeof(pthread_mutex_t) * philo->members);
-	init_printf = malloc(sizeof(pthread_mutex_t));
-	if (!init_forks || !init_printf)
-		return (0);
-	pthread_mutex_init(init_printf, NULL);
-	i = 0;
-	while (i < philo->members)
-	{
-		pthread_mutex_init(&init_forks[i], NULL);
-		i++;
-	}
-	i = 0;
-	while (i < philo->members)
-	{
-		philo[i].forks = init_forks;
-		philo[i].print = init_printf;
-		i++;
-	}
-	return (philo);
-}
-
-t_philo	*init_struct(int ac, char **av, t_philo	*philo)
+t_philo_bonus	*init_struct(int ac, char **av, \
+				t_philo_bonus *philo, t_philo_sem	*philo_sem)
 {
 	int	i;
 
@@ -88,6 +62,8 @@ t_philo	*init_struct(int ac, char **av, t_philo	*philo)
 		philo[i].must_eat = -1;
 		philo[i].is_eating = 1;
 		philo[i].n_of_eat = 0;
+		philo[i].l_t_eat = get_time();
+		philo[i].sem = philo_sem;
 		if (ac == 6)
 			philo[i].must_eat = ft_atoi(av[5]);
 		i++;

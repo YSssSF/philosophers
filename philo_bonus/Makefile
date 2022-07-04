@@ -6,28 +6,30 @@
 #    By: yel-aoun <yel-aoun@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/21 17:52:57 by yel-aoun          #+#    #+#              #
-#    Updated: 2022/06/29 14:50:06 by yel-aoun         ###   ########.fr        #
+#    Updated: 2022/07/04 15:03:25 by yel-aoun         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = philo
+NAME_BONUS = philo_bonus
 
-SRC = philosopher.c src/manage_errors.c src/ft_atoi.c src/help_philo.c src/utils_philo.c
+SRC_B = philosopher_bonus.c src_bonus/ft_atoi.c src_bonus/help_philo_bonus.c \
+	src_bonus/manage_errors.c src_bonus/utils_philo_bonus.c
 
-CC = gcc -Wall -Wextra -Werror
+CC = cc -Wall -Wextra -Werror
 
 FLAGS = -Wall -Wextra -Werror
 
-OBJ = $(SRC:.c=.o)
+OBJ_BONUS = $(SRC_B:.c=.o)
 
-all : $(NAME)
-$(NAME) : $(OBJ)
-		$(CC) $(FLAGS) $(SRC) -o $(NAME)
+all : $(NAME_BONUS)
+$(NAME_BONUS) : $(OBJ_BONUS)
+		$(CC) $(FLAGS) $(SRC_B) -o $(NAME_BONUS)
+		
 clean :
-	rm -f $(OBJ)
+	rm -f $(OBJ_BONUS)
 
 fclean : clean
-	rm -f $(NAME)
+	rm -f $(NAME_BONUS)
 
 re : fclean all
 
