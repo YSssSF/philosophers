@@ -6,7 +6,7 @@
 /*   By: yel-aoun <yel-aoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 11:37:41 by yel-aoun          #+#    #+#             */
-/*   Updated: 2022/07/04 16:39:17 by yel-aoun         ###   ########.fr       */
+/*   Updated: 2022/07/07 20:49:42 by yel-aoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ t_philo	*ft_init_forks(t_philo	*philo)
 	init_forks = malloc(sizeof(pthread_mutex_t) * philo->members);
 	init_printf = malloc(sizeof(pthread_mutex_t));
 	protect_nb_eat = malloc(sizeof(pthread_mutex_t));
-	if (!init_forks || !init_printf)
+	if (!init_forks || !init_printf || !protect_nb_eat)
 		return (0);
 	ft_init(philo, init_forks, init_printf, protect_nb_eat);
 	return (philo);

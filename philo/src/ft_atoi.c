@@ -6,7 +6,7 @@
 /*   By: yel-aoun <yel-aoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 12:37:37 by yel-aoun          #+#    #+#             */
-/*   Updated: 2022/07/04 14:51:19 by yel-aoun         ###   ########.fr       */
+/*   Updated: 2022/07/06 20:08:36 by yel-aoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,25 @@ void	ft_init(t_philo	*philo, pthread_mutex_t *init_forks, \
 		philo[i].protect_nb_eat = protect_nb_eat;
 		i++;
 	}
+}
+
+void	ft_free(t_philo	*philo, pthread_t *n_philo, int ph)
+{
+	int	i;
+
+	free(n_philo);
+	i = 0;
+	while (i < ph)
+	{
+		pthread_mutex_destroy(&philo->forks[i]);
+		pthread_mutex_destroy(philo[i].protect);
+		free(philo[i].protect);
+		i++;
+	}
+	free(philo->forks);
+	pthread_mutex_destroy(philo->print);
+	pthread_mutex_destroy(philo->protect_nb_eat);
+	free(philo->print);
+	free(philo->protect_nb_eat);
+	free(philo);
 }

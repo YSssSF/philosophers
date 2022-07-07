@@ -6,7 +6,7 @@
 /*   By: yel-aoun <yel-aoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 16:58:52 by yel-aoun          #+#    #+#             */
-/*   Updated: 2022/07/04 17:56:09 by yel-aoun         ###   ########.fr       */
+/*   Updated: 2022/07/04 18:15:00 by yel-aoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	*ft_wait_for_eating(void *philos)
 		i++;
 	}
 	sem_post(philo->sem->done);
-	exit(0);
+	return (0);
 }
 
 void	ft_init_semaphor(t_philo_sem *philo_sem, int ph)

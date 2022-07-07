@@ -6,7 +6,7 @@
 /*   By: yel-aoun <yel-aoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 16:58:02 by yel-aoun          #+#    #+#             */
-/*   Updated: 2022/07/04 17:57:33 by yel-aoun         ###   ########.fr       */
+/*   Updated: 2022/07/06 21:21:32 by yel-aoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	*check_die(void *philos)
 			printf("\033[0;31m%llu		philo number %d died \033[0m\n",
 				(get_time() - philo->star_t), (philo->index + 1));
 			sem_post(philo->sem->done);
-			break ;
+			exit(0);
 		}
 		sem_post(philo->sem->wait);
 		usleep(20);
@@ -99,6 +99,7 @@ void	ft_creat_philosofers(int ac, char **av, int ph)
 		kill(philos_id[i], SIGKILL);
 		i++;
 	}
+	free(philos_id);
 }
 
 int	main(int ac, char **av)

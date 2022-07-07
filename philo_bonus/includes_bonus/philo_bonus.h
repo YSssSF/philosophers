@@ -6,7 +6,7 @@
 /*   By: yel-aoun <yel-aoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 17:02:12 by yel-aoun          #+#    #+#             */
-/*   Updated: 2022/07/04 16:26:58 by yel-aoun         ###   ########.fr       */
+/*   Updated: 2022/07/04 18:19:34 by yel-aoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ long long		get_time(void);
 void			ft_usleep(long long sleep);
 long long		get_time(void);
 void			ft_usleep(long long sleep);
-int				if_philo_finish_eating(t_philo_bonus *philo);
 void			*ft_wait_for_eating(void *philos);
 void			ft_init_semaphor(t_philo_sem *philo, int ph);
 void			ft_start(t_philo_bonus *philo, int ph, int *philos_id, int ac);

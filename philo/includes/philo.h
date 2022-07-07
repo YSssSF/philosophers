@@ -6,7 +6,7 @@
 /*   By: yel-aoun <yel-aoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 12:05:18 by yel-aoun          #+#    #+#             */
-/*   Updated: 2022/07/04 14:50:42 by yel-aoun         ###   ########.fr       */
+/*   Updated: 2022/07/06 20:08:20 by yel-aoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef struct s_philo
 int			check_args(char **av);
 int			check_int(char **av);
 int			help_args(char **av);
+void		ft_free(t_philo	*philo, pthread_t *n_philo, int ph);
 
 // init_struct
 

@@ -6,7 +6,7 @@
 /*   By: yel-aoun <yel-aoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 12:05:28 by yel-aoun          #+#    #+#             */
-/*   Updated: 2022/07/04 15:14:08 by yel-aoun         ###   ########.fr       */
+/*   Updated: 2022/07/06 20:49:53 by yel-aoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,7 @@ void	ft_creat_philosofers(int ac, char **av, int ph)
 		usleep(100);
 	}
 	check_die(philo);
+	ft_free(philo, n_philo, ph);
 }
 
 int	main(int ac, char **av)
